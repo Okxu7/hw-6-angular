@@ -1,0 +1,36 @@
+<div style="border: 2px solid #2196F3; padding: 20px; border-radius: 8px; margin-top: 30px;">
+  <h2>Завдання 4 (Окремий компонент)</h2>
+  
+  <input 
+    type="text" 
+    [(ngModel)]="searchQuery" 
+    placeholder="Пошук за назвою (напр. 'product 2')..."
+    style="padding: 8px; width: 300px; margin-bottom: 20px;"
+  />
+
+  <!-- Показуємо список, якщо є результати -->
+  <div *ngIf="filteredProducts.length > 0; else notFound">
+    <div *ngFor="let product of filteredProducts" 
+         style="background: #f4f4f4; padding: 10px; margin-bottom: 10px; border-radius: 4px;">
+      <h3 style="margin: 0 0 5px 0;">{{ product.name }}</h3>
+      <p style="margin: 0 0 5px 0;"><strong>Ціна:</strong> {{ product.price }} $</p>
+      <p style="margin: 0; color: #555;">{{ product.description }}</p>
+    </div>
+  </div>
+
+  <!-- Блок-підказка, якщо нічого не знайдено -->
+  <ng-template #notFound>
+    <div style="color: #d32f2f; background: #ffebee; padding: 10px; border-radius: 4px;">
+      За вашим запитом "<strong>{{ searchQuery }}</strong>" товарів не знайдено. Спробуйте змінити критерії пошуку.
+    </div>
+  </ng-template>
+</div>
+
+
+<!-- Перевіряємо, чи масив порожній, і чи ввів користувач хоч якийсь текст -->
+<div *ngIf="filteredProducts.length === 0 && searchQuery.trim() !== ''" 
+     style="background-color: #ffebee; color: #c62828; padding: 15px; border-radius: 5px; border: 1px solid #ef9a9a; margin-top: 15px;">
+  <p style="margin: 0;">
+    <strong>Увага:</strong> За критеріями фільтра <i>"{{ searchQuery }}"</i> нічого не знайдено.
+  </p>
+</div>

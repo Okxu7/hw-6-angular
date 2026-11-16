@@ -1,0 +1,52 @@
+ 
+<h2>Завдання 1: Список товарів</h2>
+<ul>
+  <li *ngFor="let item of products">
+    {{ item }}
+  </li>
+</ul>
+
+<div class="container">
+  <h2>Завдання 2: Фільтр товарів</h2>
+  
+  <!-- Завдання 2: Поле для фільтрації -->
+  <input 
+    type="text" 
+    [(ngModel)]="searchQuery" 
+    placeholder="Введіть назву товару для пошуку..."
+  />
+
+  <!-- Завдання 1 та 2: Відображення списку -->
+  <ul>
+    <!-- Перебираємо не оригінальний масив, а відфільтрований геттер -->
+    <li *ngFor="let product of filteredProducts">
+      {{ product }}
+    </li>
+  </ul>
+</div>
+
+
+<!--  -->
+<div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #ccc;">
+  <h2>Завдання 3: Робота з числами</h2>
+  
+  <div>
+    <button (click)="sortAsc()">Сортувати за зростанням</button>
+    <button (click)="sortDesc()">Сортувати за спаданням</button>
+    <button (click)="findMax()">Знайти Максимум</button>
+  </div>
+
+  <!-- Показуємо максимум тільки якщо змінна не null -->
+  <p *ngIf="maxValue !== null">
+    <strong>Максимальне значення у масиві:</strong> {{ maxValue }}
+  </p>
+
+  <ul>
+    <!-- Виводимо масив чисел -->
+    <li *ngFor="let num of numbersList">{{ num }}</li>
+  </ul>
+</div>
+
+
+<!-- Підключаємо новий компонент для 4-го завдання -->
+<app-task4></app-task4>
